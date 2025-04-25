@@ -66,7 +66,7 @@ std::pair<std::set<std::string>, std::set<std::string> > parseDict(std::string f
 	while(dictfs >> word)
 	{
 		dict.insert(word);
-		for(unsigned int i=word.size()-1;i>=1;i--)
+		for(int i=word.size() - 1; i >= 1; i--)
 		{
 			prefix.insert(word.substr(0,i));
 		}
@@ -95,5 +95,27 @@ bool boggleHelper(const std::set<std::string>& dict, const std::set<std::string>
 								   std::string word, std::set<std::string>& result, unsigned int r, unsigned int c, int dr, int dc)
 {
 //add your solution here!
+  unsigned int n = board.size();
+
+  if(r>=n || c >= n){
+    return false; 
+  }
+
+  word += board[r][c];
+
+  if(prefix.find(word) == prefix.end() && dict.find(word) == dict.end()){
+    return false; 
+  }
+
+  bool found_longer = boggleHelper(dict, prefix, board, word, result, r + dr, c + dc, dr, dc);
+
+
+  if(!found_longer && dict.find(word) != dict.end()){
+    result.insert(word); 
+    return true; 
+  }
+  return found_longer || dict.find(word) != dict.end(); 
+
+
 
 }
