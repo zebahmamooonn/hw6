@@ -5,3 +5,13 @@ str-hash-test
 hash-check
 boggle-driver
 hw6_tests/
+hw6_tests/
+*.o
+*.out
+boggle-driver
+ht-test
+hashfunc_tests
+hashtable_tests
+str-hash-test
+hash-check
+test-output/
